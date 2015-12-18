@@ -1,0 +1,32 @@
+ Wire-level security and the Digital Certificate with HTTPS
+
+ # The central fields of the certificate for our purposes are:
+   
+   ## The public key from a key pair. The public key is an "identity", e.g., Amazon's public key identifies it.
+
+   ## The digital signature from a Certificate Authority (CA) such as RSA or VeriSign vouches for the DC.
+
+   ## A "fingerprint" (hash value) that identifies the certificate.
+
+   ## There are other fields such as the valid dates (e.g., a DC might be valid fro now until three years from now).
+
+ # The DC in the HTTPS "handshake":
+
+   ## One side challenges the other (e.g., my browser challenges the Amazon web server) to
+      produce one or more certificates that authenticate its identity.
+
+      ### The challenged side sends one or more certificates from its "keystore" (a data store
+	  for its own certificates).
+
+      ### The challenger verifies the certificates against its "truststore" (a data store of
+	  certificates that it trusts).
+
+          #### The verification might be indirect: my truststore has no prior verified certificate
+	       from Amazon, but it does have certificate from the CA that signs (vouches for) Amazon's certificate.
+			   
+          #### Core Java's default truststore is JAVA_HOME/jre/lib/security/cacerts
+
+      ### Each side may challenge the other. (For web sites, it's typically only the client side
+	  that challenges; for web services, mutual challenge is the rule.)
+
+ 

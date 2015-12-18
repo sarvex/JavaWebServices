@@ -1,0 +1,27 @@
+ Structure of a modern WSDL
+
+ # definitions: the outermost ('root' or 'document') tag
+
+   ## types: technically optional, but present in any worthwhile service
+      ### Provides XML Schema (or equivalent) types for the SOAP messages
+
+   ## messages: a listing of each message defined in the types section above
+
+   ## portType: specifies the "conversational pattern" for the messages, e.g.,
+      a "request-response" pattern in which the nextN request message is first,
+      and the nextNresponse message is second.
+      ### Specifies whether the service or the client sends the message.
+
+   ## binding(s): provides implementation details such as the transport
+      ### "SOAP over HTTP" versus "SOAP over TCP" would be specified here.
+      ### Might have one binding for SOAP 1.1, another for SOAP 1.2
+
+   ## service: putting it altogether with "port" elements where
+
+        port = portType + binding
+
+      ### There are as many port elements as there are bindings: with one binding, one port.
+      ### The port element specifies the "service endpoint" or URL at which the service is available.
+      
+  
+ 

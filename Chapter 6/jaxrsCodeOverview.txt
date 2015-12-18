@@ -1,0 +1,30 @@
+   Code components for the JAX-RS predictions3 service
+
+   # Prediction.java: annotated JavaBean to enable automatic XML generation
+     ## The annotation @XmlElement is attached to each of the get-methods in a property: who, what, id.
+
+     ## a toString() override supports a text/plain representation in response to GET requests.
+
+   # PredictionsList.java: annotated JavaBean that also acts as the main utility class.
+     ## The annotation @XmlElement is attached to the getPredictions() method for automatic XML generation.
+
+     ## The thread-safe
+
+           java.util.concurrent.CopyOnWriteArrayList
+
+         stores the predictions, and the thread-safe AtomicInteger ensures a unique ID per Prediction.
+
+     ## A toString() override supports a text/plain representation of the whole list of predictions
+
+   # PredictionsRS.java: heavily annotated with @GET, @Path, and @Produces to represent the REST-style
+       resource at the center of the JAX-RS service.
+     ## Supports all of the CRUD verbs in a RESTful routing style.
+
+     ## Genrates XML (default), JSON, and plaintext representations on GET requests.
+	### Supports GET all predictions and GET one prediction.
+
+   # RestfulPrediction.java: registers the PredictionsRS resource in the JAX-RS context by
+       extending the JAX-RS class javax.ws.rs.core.Application and overriding the getClasses() method.
+     ## Notifies the JAX-RS "interceptor" servlet about the PredictionRS resource.
+
+   

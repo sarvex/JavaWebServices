@@ -1,0 +1,15 @@
+     Tools for publishing the 'predictions' web service:
+
+     # A web server such as Tomcat or Jetty, which publishes the
+       service by making it available to clients.
+
+       ## Each is a production-grade web server, which can publish
+          web sites and web services alike
+
+     # A deployment tool such as Ant or Maven, which automates the
+       otherwise tedious and error-prone task of packaging the
+       web service components.
+
+
+
+     

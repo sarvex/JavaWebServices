@@ -1,0 +1,24 @@
+   # Conversational pattern in REST
+
+             HTTP verb/noun
+     client ----------------> RESTful service
+             GET  /products
+	     POST /orders
+	     ...
+
+              HTTP SC + body
+     client <---------------- RESTful service
+               200 (OK) XML
+	       200 (OK) JSON
+	       200 (OK) Plaintext
+	       ...
+
+    # Challenges in REST are mostly on the client side
+
+      ## Client must parse an XML document to extract its
+         informational content.
+
+      ## An XML response from, say, Tumblr bears little resemblance
+         to one from Twitter, Facebook, or EBay.
+
+         ### The client must contend with ad hoc XML responses.

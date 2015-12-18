@@ -1,0 +1,18 @@
+   Code structure for the RESTful Amazon client Amazon1.jar
+
+   # Amazon1 client has two source files in the JAR: RequestHelper (utility) and RestfulAmazon (main)
+
+   # Code to generate the URL for the GET request against Amazon
+   
+     ## Query string is tricky: key-value pairs must be in lexicographical order, base64-encoded,
+        time-stamped, etc.
+	
+        ### Utility class amazon1.RequestHelper does the dirty work.
+
+   # Code to make network connection
+
+     ## java.net.UrlConnection is well suited for this task
+
+   # Code to parse the response XML document
+
+     ## DOM (Document Object Model or tree-based) parse using javax.xml.parsers.DocumentBuilder

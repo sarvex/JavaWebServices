@@ -1,0 +1,9 @@
+   What are web services good for?
+
+   # Task automation
+   
+   # JS-based data retrieval from a browser 
+
+   # Software system integration
+
+  

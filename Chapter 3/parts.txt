@@ -1,0 +1,15 @@
+       Code modules in the 1st example, the predictions service:
+
+        ## predictions.jsp: JSP script that a client hits
+
+        ## Prediction.java: POJO-class representing one prediction
+	
+	   ### Prediction has a "who" (predictor) and a "what" (prediction)
+
+        ## Predictions.java: utilities to read the data from a file,
+	                     create the Prediction objects,
+			     and generate the XML
+
+           ### predictions.db: file that contains the data, acting as the
+	                       "database"
+			      

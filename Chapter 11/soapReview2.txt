@@ -1,0 +1,19 @@
+ Transport-neutral SOAP: the complications
+
+# SOAP under W3C is designed to be transport neutral
+
+  ## SOAP itself must provide transport reliability, data confidentiality (encryption/decryption), etc.
+
+  ## This makes SOAP significantly more complicated.
+
+     ### As an example, consider WCF (Windows Communciation Foundation), a framework for service-oriented systems
+
+     ### WCF is layered atop SOAP, adding transport for protocols other than HTTP(S) (e.g., TCP but also, in
+	 principle, proprietary protocols)
+
+     ### WCF supports its own "end-to-end" security instead of relying upon a mix of HTTPS at the wire-level
+	 and standard libraries for user authentication and authorization.
+
+# SOAP over HTTP(S) is relatively simple; transport-neutral SOAP cannot be.
+
+     ### Our examples stick with SOAP over HTTP(S)

@@ -1,0 +1,23 @@
+ A jQuery client as a long-term poller
+
+ # How to keep clients up-to-date with data changes on the service side?
+
+   ## "Push" approach: the service pushes changes down to the clients as the changes occur.
+       ### A multi-player, on-line game hosted on a central server might take this approach.
+
+   ## "Pull" approach: each client regularly polls the service to check for updates.
+      ### A JavaScipt client embedded in an HTML page could perform such polling.
+
+ # Components of the "poll" service:
+
+   ## predictions3.war: the JAX-RS version of the predictions service
+      ### Supports all of the CRUD operations, in particular POST, PUT, and DELETE.
+
+   ## poll.html in the ajax.war file, which uses jQuery to poll the predictions3 service
+
+   ## curl or the equivalent to make changes to the predictions3 data
+      ### Sample test command:
+
+          curl --request DELETE localhost:8080/predictions3/resourcesP/delete/32
+
+      ### For more extensive testing: the Perl script curlsTestRS.pl

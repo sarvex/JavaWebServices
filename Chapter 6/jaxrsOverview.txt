@@ -1,0 +1,34 @@
+    JAX-RS (Java API for XML-Restful Web Services) Overview
+
+    # JAX-RS is built atop the servlet infrastructure.
+      ## Depiction
+
+          client request----->JAX-RS servlet----->JAX-RS application (e.g., predictions3)
+
+      ## Sample web.xml deployment file for JAX-RS deployed to Tomcat/Jetty:
+         <web-app> 
+            <servlet> 
+              <servlet-name>jersey</servlet-name>
+              <!-- The Jersey ServletContaier knows about JAX-RS. -->
+              <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+              <load-on-startup>1</load-on-startup>
+            </servlet>
+         </web-app> 
+
+       ## The JAX-RS servlet "intercepts" the request, and then dispatches the request to the app.
+
+    # To freeze or not to freeze the WAR file? That is the question.
+
+      ## Freezing: put all required JARs (libraries) inside the deployed WAR file.
+	 ### No version control issues, but the WAR file is bigger than otherwise.
+
+      ## Not freezing: put the required JARs in TOMCAT_HOME/lib (then restart Tomcat),
+	 which allows sharing across applications.
+
+    # JAX-RS implementations
+      ## RI is Jersey, part of the Metro project: https://jersey.java.net (version 2.x).
+  
+
+
+
+		      

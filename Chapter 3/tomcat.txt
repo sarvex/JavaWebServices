@@ -1,0 +1,29 @@
+    Overview of Tomcat: http://tomcat.apache.org
+
+    # TOMCAT_HOME represents the install directory for Tomcat.
+    
+    # Tomcat is a Java-based, production-grade web server. (Jetty is a 
+      functionally equivalent alternative.)
+
+    # A key component of a Java-based web server is a servlet container.
+      JSP scripts and the like are translated automatically into servlet instances.
+	  
+      ## In Tomcat, the servlet container is Catalina. (In Jetty, this containter
+         also is named Jetty.)
+
+    # Here's the layout for Tomcat, with two key subdirectories listed:
+
+                     TOMCAT_HOME  ## the install directory
+	                   |				       
+	         +---------+---------+
+		 |         |         |
+                bin       ...     webapps
+
+    # The bin directory contains four scripts of interest:
+
+      ## startup.sh and shutdown.sh for Unix-type systems
+      ## startup.bat and shutdown.bat for Windows systems
+
+    # The webapps directory (and subdirectories) are for WAR files,
+      JAR files that contain web sites and web services
+		  

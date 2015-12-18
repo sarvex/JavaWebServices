@@ -1,0 +1,23 @@
+  Putting the WSDL (service contract) to use
+
+ # Sample use: wsimport -p client -keep http://localhost:8080/rand?wsdl
+ 
+   ## The WSDL for the RandService is "code first"--the publisher (Tomcat or Endpoint) generates it dynamically.
+
+ # The resulting Java files of interest are, in effect, JAX-B artifacts:
+
+    Next1.java              ## request message for the next1 operation
+    Next1Response.java      ## response message from the next1 operation
+
+    NextN.java              ## request message for the nextN operation
+    NextNResponse.java      ## response message from the nextN operation
+
+    RandService.java        ## the service interface: describes next1 and nextN operations
+    RandServiceService.java ## the service implementation: the code required to make it all work
+
+ # The Next* classes (Next1, Next1Response, etc.) are, in effect, xjc products: these come
+   from the XML Schema of the WSDL.
+
+ # The Rand* classes come from other parts of the WSDL, and are critical for making calls
+   against the service.
+   

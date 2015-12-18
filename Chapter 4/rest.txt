@@ -1,0 +1,29 @@
+  # REST as an API for web services
+
+    ## A "resource" is an informational item such as the Acme company's product list.
+    
+       ### A resource is hosted on some networked machine, e.g., www.acme.com.
+       
+       ### A resource has "state," that is, it can change over time (e.g., the product list grows).
+       
+       ### Various representations are possible: an XML or JSON document, a slide slow of images, etc.
+
+    ## HTTP support for resources:
+    
+       ### URIs (Uniform Resource Identifiers) name resources, e.g., /acme/products.
+           URLs and URNs (N for 'name') are URI subtypes.
+	   
+       ### Methods ("verbs") describe operations, in particular the CRUD operations:
+           POST   /acme/products  ## Create a new Acme product
+	   GET    /acme/products  ## Read a list of Acme products
+	   PUT    /acme/product   ## Update a specified Acme product
+	   DELETE /acme/product   ## Delete a specified Acme product
+
+       ### MIME types specify (desired and actual) HTTP payloads (e.g., text/xml, application/json)
+
+       ### Status codes (SCs) returned to client to signal how the request fared.
+           Common examples are:
+
+             200 == OK
+	     404 == Not Found
+	     505 == Server Error

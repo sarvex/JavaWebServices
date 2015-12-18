@@ -1,0 +1,42 @@
+# Networking code for the Amazon1 client
+
+  ## Invocatin: java -jar Amazon1.jar <accessID> <secretKey>
+ 
+public class RestfulAmazon {  //** Main-Class in Amazon1.jar
+    ...
+    public static void main(String[ ] args) {
+        ...
+	new RestfulAmazon().lookupStuff(args[0].trim(), args[1].trim());              /** line 1 **/
+    }
+
+    private void lookupStuff(String accessKeyId, String secretKey) {                  /** line 2 **/
+        RequestHelper helper = new RequestHelper(endpoint, accessKeyId, secretKey);   
+        ...
+        Map<String, String> params = new HashMap<String, String>();                   /** line 3 **/
+        params.put("Service", "AWSECommerceService");
+        params.put("Version", "2009-03-31");
+        params.put("Operation", "ItemLookup");
+        params.put("ItemId", itemId);
+        ...
+        requestUrl = helper.sign(params);                                             /** line 4 **/
+	String response = requestAmazon(requestUrl);                                  /** line 5 **/
+        ...
+    }
+
+    private String requestAmazon(String stringUrl) {                                  /** line 6 **/
+	String response = null;
+	try {
+	    URL url = new URL(stringUrl);                                             /** line 7 **/
+	    URLConnection conn = url.openConnection();                                /** line 8 **/
+	    conn.setDoInput(true);
+	    BufferedReader in = 
+		new BufferedReader(new InputStreamReader(conn.getInputStream()));     /** line 9 **/
+	    String chunk = null;
+	    while ((chunk = in.readLine()) != null) response += chunk;                /** line 10  **/
+	    in.close();
+	}
+	catch(Exception e) { throw new RuntimeException("Arrrg! " + e); }
+	return response;
+    }
+    ...
+}

@@ -1,0 +1,29 @@
+   An exercise to amend the predictions2 service
+
+   # From the doGet(...) request handler:
+
+     ## 1st decision point
+     
+     // Is this GET all or GET a specified one?
+     String param = request.getParameter("id");
+     Integer key = (param == null) ? null : new Integer(param.trim());
+
+     ## 2nd decision point
+     
+     // Check user preference for XML or JSON by inspecting HTTP headers for the Accept key.
+     boolean json = false;
+     String accept = request.getHeader("accept");   //*** Inspect the HTTP headers
+     if (accept != null && accept.contains("json")) json = true;
+
+   # An alternative approach is to make the preferred response type part of the query string.
+     For example:
+
+                Request                             Meaning
+	    
+	GET /predictions2                    GET all in XML 
+	GET /predictions2?id=12              GET prediction 12 in XML
+        GET /predictions2?type=json          GET all in JSON
+	GET /predictions2?type=json&id=12    GET prediction 12 in JSON
+        GET /predictions2?type=plain         GET all in plaintext
+	GET /predictions2?type=plain&id=12   GET prediction 12 in plaintext
+

@@ -1,0 +1,33 @@
+   Options for JSON generation
+
+   # JAX-RS can automatically generate XML/JSON responses, as the JAX-RS 'predictions3' service illustrates:
+
+       /* <prediction>
+             <id>...</id>
+	     <what>...</what>
+             <who>...</who>
+	  </prediction> */
+       @XmlRootElement(name = "prediction")                             /** line 1 **/
+       public class Prediction implements Comparable<Prediction> {
+          ...
+          public void setWho(String who) { this.who = who; }
+          @XmlElement                                                   /** line 2 **/
+          public String getWho() { return this.who; }
+          ...
+       }
+
+   # Java's standard libraries have excellent support for binding Java data types
+     to XML data types (JAX-B is Java API for XML-Binding).
+     ## Starting with Java EE 7, there are so-called Specification APIs for
+        JSON bindings as well (see, e.g., javax.json and javax.json.spi documentation)
+
+   # Excellent 3rd-party packages for JSON bindings are available, including:
+     ### Jackson ("JSON for Java") at https://github.com/FasterXML/jackson
+     ### json-simple at https://github.com/fangyidong/json-simple
+
+   # Why generate JSON explicitly in the 'predictions' and 'adages' services?
+     ### Easier on the client: no need to inject an HTTP header into the request
+     ### Uniform RESTful routing: .../predictions/xml and .../predictions/json
+     ### It's one line of code: new ObjectMapper().writeValueAsString(prediction);
+
+

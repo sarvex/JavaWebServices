@@ -1,0 +1,20 @@
+ The HTTPS handshake--short version
+
+ # Underlying algorithm is ECDHE (Elliptical Curve Diffie-Hellman Key Exchange)
+   ## For simplicity, we'll focus only the client-challenges-server side.
+
+ 1. Client (the GoogleClient, a browser) challenges the server (e.g., Google), which responds with one or more DCs.
+
+ 2. The client checks the DC(s) against its truststore. If ok, continue.
+
+ 3. The client generates a "pre-master secret", typically a 48-bit value with certain properties.
+
+ 4. The client uses the public key from a server DC to encrypt the "pre-master secret" before sending to the server.
+    The server decrypts this secret with its private key.
+
+ 5. The client and the server then use this "secret" to generate the same "session key," which is used
+    to encrypt and decrypt messages.
+
+ 6. Either side can call from a new handshake at any time.
+
+ 

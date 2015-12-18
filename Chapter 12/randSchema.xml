@@ -1,0 +1,22 @@
+<xs:schema xmlns:tns="http://rand/"
+	   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	   version="1.0"
+	   targetNamespace="http://rand/">
+  <!-- ... -->
+  <xs:complexType name="nextN">
+    <xs:sequence>
+      <xs:element name="arg0"
+		  type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="nextNResponse">
+    <xs:sequence>
+      <xs:element name="return"
+		  type="xs:int"
+		  nillable="true"
+		  minOccurs="0"
+		  maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,31 @@
+  SOAP-based services: an overview
+
+# SOAP is an XML dialect under W3C control. (SOAP 1.1 is the default, SOAP 1.2 is the current version.)
+
+# SOAP is likewise a messaging protocol.
+
+  ## Client and service exchange SOAP messages called Envelopes because the root element is Envelope:
+
+     <Envelope>
+        <Header>...</Header>   <!-- optional -->
+        <Body>...</Body>       <!-- required, but could be empty -->
+     </Envelope>
+
+  ## Typical SOAP-based conversation ("request/response" pattern):
+
+                request Envelope
+      1. client------------------>service
+      
+                response Envelope
+      2. client<------------------service
+
+# The SOAP is typically transparent on both the client and the service side.
+
+  ## The SOAP libraries automatically handle the marshaling and unmarshaling so that applications
+     need not deal with the XML.
+
+
+
+
+   
+ 

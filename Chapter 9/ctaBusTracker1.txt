@@ -1,0 +1,46 @@
+The CTA (Chicago Transit Authority) RESTful bus tracker service
+
+# Exposes as a REST-style service the very same data/functionality available at the web site through a browser.
+  
+# Very lightweight and modular: one operation per service, each with an XML Schema
+  ## Each XML Schema is short and sweet--30 lines or so.
+  
+  ## By contrast, Amazon's ECommerce service encapsulates many operations, and the schema is about 1,300 lines.
+
+  ## Registration is free (http://www.ctabustracker.com) for the "API key" required in a RESTful request
+
+# Sample GET request URL: http://lapi.transitchicago.com/api/1.0/ttarrivals.aspx?key=...&max=1&mapid=40360
+  ## When is the next bus arriving at station with ID 40360 (the "Southport" station)?
+
+  ## Response document (26 lines in all):
+
+<?xml version="1.0" encoding="UTF-8"?>
+<ctatt>
+  <tmst>20110618 23:26:50</tmst>            ## request timestamp
+  <errCd>0</errCd>
+  <errNm/>
+  <eta>
+    <staId>40360</staId>
+    <stpId>30070</stpId>
+    <staNm>Southport</staNm>                ## station location
+    <stpDe>Service toward Kimball</stpDe>   ## direction bus is moving
+    <rn>419</rn>
+    <rt>Brn</rt>
+    <destSt>30249</destSt>
+    <destNm>Kimball</destNm>
+    <trDr>1</trDr>
+    <prdt>20110618 23:26:12</prdt>
+    <arrT>20110618 23:28:12</arrT>          ## expected arrival time
+    <isApp>0</isApp>
+    <isSch>0</isSch>
+    <isDly>0</isDly>
+    <isFlt>0</isFlt>
+    <flags/>
+    <lat>41.97776</lat>                     ## GPS coordinates
+    <lon>-87.77567</lon>
+    <heading> 299</heading>
+  </eta>
+</ctatt>
+
+ 
+

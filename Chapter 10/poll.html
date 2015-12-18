@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ajax polling example</title>
+    <script type = "text/javascript" 
+	    src  = "http://code.jquery.com/jquery-latest.min.js">
+    </script>
+    <script type = "text/javascript">
+      var url = 'http://localhost:8080/predictions3/resourcesP/json';              //** line 0
+
+      function displayPreds(preds) {                                               //** line 1 
+         $('#container').empty(); // clear the old list, if any                    //** line 2 
+         $.each(preds, function(ind, val) {                                        //** line 3 
+              $('#container').append('<li>' + preds[ind].who + ': ' + 
+	                                      preds[ind].what + '</li>'); } );
+      }
+
+      function fetch() {
+          $.ajax({                                                                 //** line 4 
+                   url:         url,
+                   method:      'GET',
+                   dataType:    'json',                                            //** line 5 
+                   contentType: "application/json; charset=utf-8",                 //** line 6 
+                   cache:       false,
+                   success:     function(res) { displayPreds(res.predictions); },  //** line 7 
+                   error:       function(res) { console.log(res); },
+                   complete:    function () {                                      //** line 8 
+                                   setTimeout(function() { fetch() }, 5000)}});    //** 5 seconds 
+      }
+
+      $(document).ready(fetch); // invoked after DOM is built and loaded           //** line 9 
+    </script>
+  </head>
+  <body>
+    <ul id = 'container'></ul>
+  </body>
+</html>
+

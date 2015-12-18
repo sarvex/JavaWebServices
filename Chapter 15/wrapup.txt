@@ -1,0 +1,19 @@
+ Wrapup
+
+ # Thanks and congratulations!
+
+ # The big picturen of the grand tour through web services:
+   ## Web services are a powerful, flexible way to do distributed software systems.
+   
+   ## These services are likewise practical in that they piggy-back on infrastructure (e.g., web servers)
+      and technologies (e.g., HTTP and document interchange) already in place.
+
+ # If you'd like more detail:
+
+   Java Web Services: Up and Running, 2nd edition, O'Reilly ISBN: 978-1-449-365-11-0
+   git@github.com:mkalin/jwsur2.git
+
+ # If you'd like to contact me: kalin@cs.depaul.edu
+                                http://condor.depaul.edu/mkalin
+			
+

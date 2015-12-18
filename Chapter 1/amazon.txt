@@ -1,0 +1,9 @@
+   Amazon's paired sites and services
+
+   ## ECommerce site/service: shopping, etc.
+
+   ## S3: simple storage service
+
+   ## EC2: cloud computing service
+   
+

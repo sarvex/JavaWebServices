@@ -1,0 +1,33 @@
+# Parsing the returned XML document to extract the relevant information
+  
+  <ItemLookupResponse>
+      ...                                                ## subtree in the DOM representation
+      <Item>               
+         <ItemAttributes>                                          +------------+       
+            <Author>J. K. Rowling</Author>                         |   Author   | non-TEXT_NODE
+            ...                                                    +------+-----+
+         </ItemAttributes>                                                |
+      </Item>                                                     +-------+-------+
+                                                                  | J. K. Rowling | TEXT_NODE
+# The parsing code                                                +---------------+
+
+public class RestfulAmazon {
+    ...
+    private String getAuthor(String xml) {
+	String author = null;
+	try {
+	    ByteArrayInputStream bais = new ByteArrayInputStream(xml.getBytes());  /** line 1 **/
+	    DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
+	    fact.setNamespaceAware(true); 
+	    DocumentBuilder builder = fact.newDocumentBuilder();                   /** line 2 **/
+	    Document doc = builder.parse(bais);                                    /** line 3 **/
+	    NodeList results = doc.getElementsByTagName("Author");                 /** line 4 **/
+	    for (int i = 0; i < results.getLength(); i++) {                        /** line 5 **/
+		Element e = (Element) results.item(i);
+		NodeList nodes = e.getChildNodes();
+		for (int j = 0; j < nodes.getLength(); j++) {
+		    Node child = nodes.item(j);
+		    if (child.getNodeType() == Node.TEXT_NODE)                     /** line 6 **/
+			author = child.getNodeValue();                             /** line 7 **/
+		}
+                ...

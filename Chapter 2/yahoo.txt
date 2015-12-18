@@ -1,0 +1,23 @@
+<script type="text/javascript"> /*used for perf beacons in 3pas*/
+  rtTop = Number(new Date());
+  document.documentElement.className += ' jsenabled';
+  if (!("ontouchstart" in document.documentElement)) {
+    document.documentElement.className += " no-touch"; }
+  ...
+OnloadCache.enable();     var setJSCookie = true;
+    (function () {
+        var cookieName = "FBJSC=";
+        var cookieValue = "1431136957";
+        var cookieIndex = document.cookie.indexOf(cookieName);
+        if(cookieIndex >= 0) {
+            var oldValue = document.cookie.substr(cookieIndex + cookieName.length,
+                                                  cookieValue.length);
+            if(cookieValue <= oldValue) {
+                setJSCookie = false;
+            }
+        }
+        if(setJSCookie) {
+            document.cookie = cookieName + cookieValue;
+        }
+    })();
+ </script>

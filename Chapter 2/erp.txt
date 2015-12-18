@@ -1,0 +1,14 @@
+    ## My company's ERP system
+
+       ### Inventory control subsystem
+       
+           -- A program monitors the database to check if
+	      inventory items have fallen below a threshold
+
+           -- If so, the monitor program starts up a web-service client 
+	      that interacts with the appropriate vendors' web services in
+	      order to solicit bids on needed items, select items,
+	      place and track orders, etc.
+
+    
+

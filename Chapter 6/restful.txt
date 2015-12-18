@@ -1,0 +1,30 @@
+   RESTful routing
+
+   # Pioneered and popularized in the Rails framework, now widely imitated
+
+   # Verbs matter!
+
+        // GET /predictions         /* Read all predictions */
+	public void doGet(...)
+
+        // POST /predictions        /* Create a new prediction for data in the HTTP request body */
+	public void doPost(...)
+		
+        // GET /predictions/27      /* Read prediction with id = 27 */
+	public void doGet(...)
+
+        // DELETE /predictions/27   /* Delete prediction with id = 27 */
+	public void doDelete(...)
+
+   # In frameworks such as JAX-RS and Restlet, the REST-style routes can be specified through annotations
+     ## Annotations can specify HTTP verbs (e.g., GET) and nouns (e.g., URIs such as /predictions)
+     
+     ## An annotation can specify the MIME type for the response (e.g., application/json versus text/xml)
+
+        @Produces({MediaType.APPLICATION_JSON})  /* a JAX-RS example */
+	public Response getJson()
+
+     ## An annotation can specify a regular expression (regex) that verifies a parameter.
+        Here's a pseudo-code example (JAX-RS examples come shortly):
+
+        GET /predictions/{id: [0-9]+}     ### the id must be a decimal value such as 12

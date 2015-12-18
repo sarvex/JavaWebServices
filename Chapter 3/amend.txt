@@ -1,0 +1,32 @@
+     Exercise: Amending the 'predictions' service 
+
+     # First, here's a quick fix to the existing 'predictions' service
+       that makes it easier to access.
+       ## My Ant script requires the configuration file web.xml, also
+          known as the 'deployment descriptor.' For now, a simple version
+	  will do. Here it is, essentially empty:
+
+          <web-app></web-app>
+
+       ## The curl client currently uses this URL to hit the service on localhost:
+
+          curl localhost:8080/predictions/predictions.jsp
+
+          The /predictions names the WAR file, in this case predictions.war.
+	  
+	  The /predictions/predictions.jsp names the file, in this case the JSP script,
+	  inside the WAR file.
+
+       ## By renaming predictions.jsp to index.jsp, we can simplify things by taking
+          advantage of Tomcat's default behavior. Now the curl client looks like this:
+
+          curl localhost:8080/predictions  ### Tomcat finds index.jsp in the WAR file
+
+       ## When only the WAR file name is given, as is the case here, Tomcat looks by
+          default for one of these files: index.html, index.htm, index.jsp.
+	  ### Tomcat returns a 404 (File Not Found) status code if none is found.
+	  ### web.xml could be used to specify other default file names.
+
+
+
+       

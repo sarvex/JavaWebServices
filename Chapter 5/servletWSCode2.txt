@@ -1,0 +1,66 @@
+package predictions2;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.util.concurrent.ConcurrentMap;                 // thread-safe
+import java.util.concurrent.ConcurrentHashMap;             // thread-safe
+import java.util.concurrent.atomic.AtomicInteger;          // thread-safe
+import java.util.Collections;
+import java.beans.XMLEncoder; // simple and effective
+import javax.servlet.ServletContext;
+
+public class Predictions {
+    private ConcurrentMap<Integer, Prediction> predictions;          /** 1 **/
+    private AtomicInteger mapKey;                                    /** 2 **/
+    private ServletContext sctx;                                     /** 3 **/
+   
+    public Predictions() { 
+	predictions = new ConcurrentHashMap<Integer, Prediction>();
+	mapKey = new AtomicInteger();
+    }
+
+    //** properties
+    // The ServletContext is required to read the data from
+    // a text file packaged inside the WAR file
+    public void setServletContext(ServletContext sctx) {                   
+	this.sctx = sctx;
+    }
+    public ServletContext getServletContext() { return this.sctx; }
+
+    public void setMap(ConcurrentMap<String, Prediction> predictions) { }
+    public ConcurrentMap<Integer, Prediction> getMap() {
+	// Has the ServletContext been set?
+	if (getServletContext() == null) return null;      
+	// Have the data been read already?
+	if (predictions.size() < 1) populate(); 
+	return this.predictions;
+    }
+
+    public String toXML(Object obj) {                                 /** 4 **/
+	String xml = null;
+	try {
+	    ByteArrayOutputStream out = new ByteArrayOutputStream();
+	    XMLEncoder encoder = new XMLEncoder(out);
+	    encoder.writeObject(obj); // serialize to XML
+	    encoder.close();
+	    xml = out.toString(); // stringify
+	}
+	catch(Exception e) { }
+	return xml;
+    }
+    ...
+    // Called from doPost(...) to add a Prediction to the map
+    public int addPrediction(Prediction p) {                          /** 5 **/
+	int id = mapKey.incrementAndGet();     // generate a new ID
+	p.setId(id);                           // set the Prediction ID
+	predictions.put(id, p);                // add Prediction to collection
+	return id;
+    }
+}
+
+
+
+

@@ -1,0 +1,25 @@
+<jsp:useBean id    = "now"             // now references an instantiated Date 
+	     type  = "java.util.Date"                 
+	     class = "java.util.Date"> 
+  <%
+     // now can can be used here as a 1st-class object reference,
+     // e.g., out.toString() returns a human-readable representation
+     // of the current date/time; now.getTime() returns a numeric
+     // representation; and so on.
+     
+     // out.println(...) can be used to send text (including
+     // XML documents) back to the client
+  %>
+</jsp:useBean>
+
+/* Quick review of the Ant build script:
+
+   -- Place the build.xml in your current working directory (cwd).
+   -- Create a subdirectory named src: put the JSP script index.jsp (above)
+      in src.
+   -- Put the dummy web.xml (<web-app></web-app>) in src.
+   -- From the cwd, issue the command (with % used here as the prompt):
+
+      % ant -Dwar.name=time deploy
+      % curl localhost:8080/time
+*/

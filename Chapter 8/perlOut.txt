@@ -1,0 +1,10 @@
+ Information extracted by a client, through XML parsing, from the REST-style 'predictions2' service
+
+ 1: Cornelius Tillman -> 'Managed holistic contingency will grow killer action-items.'
+ 2: Conner Kulas -> 'Vision-oriented zero administration time-frame will generate back-end interfaces.'
+ 3: Loraine Ryan -> 'Triple-buffered scalable function will productize visionary infomediaries.'
+ ...
+29: Immanuel Bergstrom -> 'Assimilated intermediate superstructure will drive vertical methodologies.'
+30: Dahlia Robel -> 'Proactive demand-driven open architecture will innovate impactful networks.'
+32: Hiram Gulgowski -> 'Versatile tangible application will maximize rich e-business.'
+

@@ -1,0 +1,32 @@
+ The JavaBean XML-2-JSON conversion code (full code in the deployable WAR file, cds.war)
+
+package cds;
+...
+public class FetchXML {
+    public String getJson() {                                                       /** line 0 **/
+	JSONObject json = null;
+	try {
+	    // Fetch the XML document from the W3C site.
+	    String xml = "";
+	    URL url = new URL("http://www.w3schools.com/xml/cd_catalog.xml");       /** line 1 **/
+	    URLConnection conn  = url.openConnection();                             /** line 2 **/
+	    BufferedReader in = 
+		new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+	    // Read the document records.
+	    String line = null;
+	    while ((line = in.readLine()) != null) xml += line;                     /** line 3 **/
+	    in.close();
+
+	    // Clean up the XML.
+	    xml = xml.replace("'", "");                                             /** line 4 **/
+
+	    // Transform the XML document into a JSON object,
+	    // in this case an array of song objects.
+	    json = XML.toJSONObject(xml.toLowerCase());                             /** line 5 **/
+	}
+	catch(Exception e) { }
+	return json.toString(); // JSON document                                    /** line 6 **/
+    }
+}
+   

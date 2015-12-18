@@ -1,0 +1,33 @@
+  Conservational pattern in SOAP-based services
+
+  # Client/service interaction:
+
+             POSTed SOAP document
+     client ----------------------> server
+                 HTTP request
+
+                 SOAP document
+     client <---------------------- server
+                 HTTP response
+
+  # Minuses
+
+    ## More complicated than REST, with additional software libraries:
+    
+                           SOAP library
+	Java List<Product> ------------> XML ----> service
+
+        Java List<Prices>  <------------ XML <---- service
+                            SOAP library
+			    
+  # Pluses:
+
+    ## In routine exchanges, no need for the client to parse
+       the returned XML (JSON), as the underlying libraries do this.
+
+    ## There are utilities to generate the basic client code per service.
+
+
+
+
+ 

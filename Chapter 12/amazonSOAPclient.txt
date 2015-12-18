@@ -1,0 +1,17 @@
+ Structure of the client (programmer code) against the SOAP-based ECommerce service
+
+ # AmazonClientBareStyle.java: the main class
+   
+   ## Creates an ItemSearchRequest for books by or about Jane Austen
+   
+   ## Wraps this request in an ItemSearch
+   
+   ## Invokes the itemSearch(ItemSearch obj) operation in the SOAP-based ECommerce service
+
+   ## Extracts information (in this case, the book's title) using the wsimport-generated classes
+ 
+ # AwsHandlerResolver.java: counterpart of the RequestHandler used in the REST-style clients against Amazon
+
+   ## Does the grunt work of formatting the SOAP request properly
+
+

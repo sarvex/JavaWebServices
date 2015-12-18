@@ -1,0 +1,19 @@
+  Setting up and running the clients against Amazon's REST-style ECommerce service
+
+  # Two clients: Amazon1.jar and Amazon2.jar
+  
+    ## Execution: java -jar Amazon1.jar <your accessId> <your secretKey>
+
+  # Register for free with Amazon (http://aws.amazon.com) to get an accessID and a secretKey
+  
+    ## The accessID is your numeric identifier.
+    ## The secretKey is used to generate a hash value that Amazon generates--and checks against yours.
+
+  # The first client, Amazon1.jar, does an "item lookup" operation against Amazon's ECommerce service.
+
+  # On success, Amazon returns an XML document that describes the requested item
+
+
+
+
+  

@@ -1,0 +1,17 @@
+# Restlet code: the POST handler
+
+public class CreateResource extends ServerResource {
+    public CreateResource() { }
+
+    @Post                                                           /** line 1 **/
+    public Representation create(Representation data) {             /** line 2 **/
+       Status status = null;
+       String msg = null;
+
+       // Extract the data from the POST body.
+       Form form = new Form(data);                                  /** line 3 **/
+       String words = form.getFirstValue("words");
+       ...
+       return new StringRepresentation(msg, MediaType.TEXT_PLAIN);  /** line 4 **/
+    }
+}

@@ -1,0 +1,118 @@
+package predictions2;
+
+import java.util.concurrent.ConcurrentMap;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.http.HTTPException;
+import java.util.Arrays;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.beans.XMLEncoder;
+import org.json.JSONObject;
+import org.json.XML;
+
+public class PredictionsServlet extends HttpServlet {
+    private Predictions predictions; // back-end bean
+
+    // Executed when servlet is first loaded into container.
+    // Create a Predictions object and set its servletContext
+    // property so that the object can do I/O.
+    @Override
+    public void init() {                                                            /** 1 **/
+	predictions = new Predictions();
+	predictions.setServletContext(this.getServletContext());
+    }
+
+    // GET /predictions2                                                            /** 2 **/
+    // GET /predictions2?id=1                                                       /** 3 **/
+    // If the HTTP Accept header is set to application/json (or an equivalent
+    // such as text/x-json), the response is JSON and XML otherwise.
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) {   /** 4 **/
+	String param = request.getParameter("id");                                  /** 5 **/
+	Integer key = (param == null) ? null : new Integer(param.trim());
+
+	// Check user preference for XML or JSON by inspecting
+	// the HTTP headers for the Accept key.
+	boolean json = false;
+	String accept = request.getHeader("accept");                                /** 6 **/
+	if (accept != null && accept.contains("json")) json = true;
+	
+        // If no query string, assume client wants the full list.
+        if (key == null) {                                                          /** 7 **/
+	    ConcurrentMap<Integer, Prediction> map = predictions.getMap();
+
+	    // Sort the map's values for readability.
+	    Object[] list = map.values().toArray();
+	    Arrays.sort(list);
+
+	    String xml = predictions.toXML(list);
+	    sendResponse(response, xml, json);
+	}
+	// Otherwise, return the specified Prediction.
+	else {                                                                      /** 8 **/
+	    Prediction pred = predictions.getMap().get(key);
+
+	    if (pred == null) { // no such Prediction
+		String msg = key + " does not map to a prediction.\n";
+		sendResponse(response, predictions.toXML(msg), false);
+	    }
+	    else { // requested Prediction found
+		sendResponse(response, predictions.toXML(pred), json);
+	    }
+	}
+    }
+
+    // POST /predictions2                                                           /** 9 **/
+    // HTTP body should contain two keys, one for the predictor ("who") and
+    // another for the prediction ("what").
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+	String who = request.getParameter("who");                                   /** 10 **/
+	String what = request.getParameter("what");                                 /** 11 **/
+
+	// Are the data to create a new prediction present?
+        if (who == null || what == null)
+            throw new HTTPException(HttpServletResponse.SC_BAD_REQUEST);            /** 12 **/
+
+	// Create a Prediction.
+	Prediction p = new Prediction();                                            /** 13 **/
+	p.setWho(who);
+	p.setWhat(what);
+
+	// Save the ID of the newly created Prediction.
+	int id = predictions.addPrediction(p);
+
+	// Generate the confirmation message.
+	String msg = "Prediction " + id + " created.\n";
+	sendResponse(response, predictions.toXML(msg), false);
+    }
+    ...
+    // Method Not Allowed
+    @Override
+    public void doTrace(HttpServletRequest request, HttpServletResponse response) { /** 14 **/
+        throw new HTTPException(HttpServletResponse.SC_METHOD_NOT_ALLOWED);
+    }
+
+    // Send the response payload to the client.
+    private void sendResponse(HttpServletResponse response, String payload, boolean json) {
+	try {
+	    // Convert to JSON?
+	    if (json) {                                                             /** 15 **/
+		JSONObject jobt = XML.toJSONObject(payload);
+		payload = jobt.toString(3); // 3 is indentation level for nice look
+	    }
+	    OutputStream out = response.getOutputStream();
+	    out.write(payload.getBytes());                                          /** 16 **/
+	    out.flush();
+	}
+	catch(Exception e) {
+	    throw new HTTPException(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+	}
+    }
+}     

@@ -1,0 +1,21 @@
+
+    Overview of Apache Ant ("Ant" for short)
+
+    URL: http://ant.apache.org
+
+    # A tool to build, package, and  deploy applications, especially in Java
+
+    # Works from a configuration file whose default name is build.xml.
+      This file lists tasks to be done, and commands that perform such tasks.
+
+    # Version 1.6 or greater is good enough for my script.
+
+    # At the command line, with % as the prompt:
+	
+      ## % ant -version              ### show the version
+      ## % ant                       ### perform the default task in build.xml
+      ## % ant -f foo.xml            ### use a file other than build.xml
+      ## % ant -Dwar.name=hi deploy  ### build and deploy hi.war
+
+    # My build.xml has extensive documentation on how to use
+      it, with examples to follow.

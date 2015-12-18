@@ -1,0 +1,28 @@
+The XML Schema for the "time tracker" service
+
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified"
+           elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+ <xs:element name="ctatt">
+   <xs:complexType>
+     <xs:sequence>
+       <xs:element name="tmst" type="xs:string" />
+       <xs:element name="errCd" type="xs:unsignedByte" />
+       <xs:element name="errNm" />
+       <xs:element maxOccurs="unbounded" name="eta">               ## estimated arrival times
+         <xs:complexType>
+           <xs:sequence>
+             <xs:element name="staId" type="xs:unsignedShort" />
+             <xs:element name="stpId" type="xs:unsignedShort" />
+             ...
+             <xs:element name="heading" type="xs:unsignedShort" /> ## direction bus is heading
+           </xs:sequence>
+         </xs:complexType>
+       </xs:element>
+     </xs:sequence>
+   </xs:complexType>
+ </xs:element>
+</xs:schema>
+
+ 
+

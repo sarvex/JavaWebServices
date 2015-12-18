@@ -1,0 +1,37 @@
+package ctaBT;
+...
+public class BusTracker {
+    private static final String baseUrl = "http://www.ctabustracker.com/bustime/api/v1/"; 
+    public static void main(String[ ] args) {
+        ...
+	new BusTracker().demo("?key=" + args[0]);
+    }
+
+    private void demo(String key) {
+	String url = baseUrl + "gettime" + key;                        /** line 1 **/  
+	makeRequest(url);
+	url = baseUrl + "getvehicles" + key;                           /** line 2 **/
+	makeRequest(url);                                        
+	String sampleRoute = "&rt=20&pid=954";                         /** line 3 **/
+	url = baseUrl + "getpatterns" + key + sampleRoute;
+	makeRequest(url);                                       
+    }
+
+    private void makeRequest(String stringUrl) {
+	String response = null;
+	try {
+	    URL url = new URL(stringUrl);
+	    URLConnection conn = url.openConnection();                 /** line 4 **/
+	    conn.setDoInput(true);
+	    
+	    BufferedReader in = 
+		new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	    String chunk = null;
+	    while ((chunk = in.readLine()) != null) response += chunk; /** line 5 **/
+	    in.close();
+	}
+	catch(Exception e) { throw new RuntimeException("Arrrg! " + e); }
+	report(stringUrl, response);                              /** line 5 **/
+    }
+    ...
+ 

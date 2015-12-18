@@ -1,0 +1,31 @@
+# JAX-B binding
+
+## Review: used xjc to generate Java data types (class files) from the Amazon ECommerce XML Schema
+
+## On the XML side
+  
+<!-- from the ECommerce XML Schema -->
+<xsd:element name="ItemLookupResponse">
+   <xsd:complexType>
+     <xsd:sequence>
+       <xsd:element ref="tns:OperationRequest" minOccurs="0"/>
+       <xsd:element ref="tns:Items" minOccurs="0" maxOccurs="unbounded"/>
+     </xsd:sequence>
+   </xsd:complexType>
+</xsd:element>
+
+<!-- an instance returned from Amazon from the 1st RESTful client -->
+<ItemLookupResponse>
+   <OperationRequest>
+   ...
+   </OperationRequest>
+   <Items>
+   ...
+   </Items>
+</ItemLookupResponse>
+
+## On the Java side
+
+ItemLookupResponse.class (compiled from ItemLookupResonse.java, which is from xjc)
+
+An instance of ItemLookupResponse to represent a particular Amazon response (e.g., about a Harry Potter book)

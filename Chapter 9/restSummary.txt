@@ -1,0 +1,16 @@
+ Summary of REST-style services from the client side:
+
+# No official standards, only practices--great technical variety in the services.
+
+  ## Most services provide an XML Schema or equivalent for JAX-B via the xjc utility.
+
+  ## The XML Schemas for Amazon, EBay, Facebook, Tumblr, Twitter...differ.
+     ### Lots of independent APIs and response-document formats.
+
+# The big question: To parse or go JAX-B?
+
+  ## For simple services and one-time apps, maybe parsing is good enough.
+
+  ## For repeated use, JAX-B should be considered to avoid explicit XML parsing.
+
+

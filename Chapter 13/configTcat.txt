@@ -1,0 +1,26 @@
+ Configuring Tomcat for HTTPS wire-level security
+
+ # We need a DC, but a "self-signed" one will do for demo purposes:
+
+      keytool -genkey -keyalg RSA -keystore tcat.keystore
+
+   ## The keytool utility ships with core Java. There's an interactive session that results in the
+      creation of the file tcat.keystore, which contains a self-signed DC.
+
+ # Tomcat's main configuration file is: TOMCAT_HOME/conf/server.xml
+
+    <!-- Out of the box, this will be commented out. -->
+    <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+               clientAuth="false" sslProtocol="TLS"                                ### one-way challenge
+               keystoreFile="${user.home}/tomcat8/conf/certs/tcat.keystore"        ### added
+               keystorePass="qubits"                                               ### added
+     />
+
+ # Restart Tomcat if it's running.
+
+ # To test, direct curl or a browser to: https://localhost:8443
+ 
+   ### For curl: curl --insecure https://localhost:8443
+   
+      

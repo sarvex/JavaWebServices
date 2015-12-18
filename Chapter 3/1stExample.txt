@@ -1,0 +1,11 @@
+     What's required for a full code example?
+
+     # Service side: write the service, then publish it
+     
+       ## The service: JSP script + backend POJO code
+       ## Publication: Tomcat web server (http://tomcat.apache.org)
+
+     # Client side: write the client, then execute it
+     
+       ## curl utility (available at: http://curl.haxx.se)
+     

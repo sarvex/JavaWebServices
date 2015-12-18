@@ -1,0 +1,33 @@
+  HttpServlet framework for REST-style services
+
+  # The javax.servlet.http.HttpServlet has some attractive features for REST:
+
+    ## HttpServlet instances filter incoming requests by HTTP verb. For example:
+       doGet(...)    accepts GET (read) requests
+       doPost(...)   accepts POST (create) requests
+       doPut(...)    accepts PUT (update) requests
+       doDelete(...) accepts DELETE (delete) requests
+
+    ## The HttpServlet class follows the "adapter pattern" with respect to the do-verbs:
+       ### In HttpServlet class, the do-methods are defined but with empty bodies:
+	   doGet(...,...)  { /** empty **/ }
+	   doPost(...,...) { /** empty **/ }
+	   
+       ### A subclass such as MyHttpServlet then overrides the do-methods of interest,
+	   and ignores the rest.
+
+    ## Each do-method takes two arguments:
+       ### An HttpServletRequest is a map of the incoming HTTP request items.
+       ### An HttpServletResponse has an output stream to communicate back with the client.
+       ### There are symbolic constants for HTTP status codes such as:
+           SC_OK (HTTP 200)
+	   SC_METHOD_NOT_ALLOWED (HTTP 403)
+	   SC_NOT_FOUND (HTTP 404)
+
+    ## The HttpServlet class gives access to HTTP meta-data in the headers,
+       including cookies, for both incoming requests and outgoing responses.
+
+ 	
+ 	   
+
+

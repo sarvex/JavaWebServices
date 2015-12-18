@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JSON</title>
+    <script type = "text/javascript"                                             <!-- line 1 -->
+	    src = "http://code.jquery.com/jquery-latest.min.js">                 <!-- line 2 -->
+    </script>
+    <script type = "text/javascript">
+      $.getJSON('http://localhost:8080/cds/getCDs.jsp', function(response) {     <!-- line 3 -->
+         var cds = response.catalog.cd;                                          <!-- line 4 -->
+      
+         var cdsAsJSON = JSON.stringify(cds);                                    <!-- line 5 -->
+         alert(cdsAsJSON);                                                       <!-- line 6 -->
+      
+         $.each(cds, function(ind, val) {                                        <!-- line 7 -->
+             $('#container').append('<li>' + cds[ind].title + ': ' +             <!-- line 8 -->
+	                                     cds[ind].artist + '</li>'); } );
+      
+      });
+    </script>  
+</head>
+  <body>
+    <ul id = 'container'></ul>                                                   <!-- line 10 -->
+  </body>
+</html>

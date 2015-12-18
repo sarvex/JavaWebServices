@@ -1,0 +1,28 @@
+ SOAP services and clients in JAX-WS: the two levels
+
+ # Application level
+
+   ## Services and their operations are published on the service side and invoked on the client side.
+
+   ## The SOAP is hidden.
+
+  # Handler level
+
+   ## Provides access to the SOAP. For example:
+
+      ### A client might insert security credentials into the SOAP envelope.
+          #### Amazaon reqires a properly formatted timestamp and a hash value generated from the secretID
+
+      ### The service might verify these credentials.
+          #### Amazon checks the timestamp and the hash value.
+
+   ## SOAP handlers have access to the full message: header, body, and attachments.
+
+   ## Logical handlers have access to the body.
+
+   ## As many handlers (including none) as needed on either side, service or client.
+
+
+ # The ECommerce service is fussy about how SOAP requests are formatted, just as it is about
+   RESTful requests are formatted.
+

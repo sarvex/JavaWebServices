@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+...
+<script type="text/javascript"
+   src="https://d14jjfgstdxsoz.cloudfront.net/37dda91a26359543f05d6f9c07ac8215ec068ced.js">
+</script>
+<script type="text/javascript">
+  if (typeof Package === 'undefined' ||
+    ! Package.webapp ||
+    ! Package.webapp.WebApp ||
+    ! Package.webapp.WebApp._isCssLoaded()) {
+  document.location.reload();
+}
+</script>
+...
+</head>
+<body>
+</body>
+</html>
+

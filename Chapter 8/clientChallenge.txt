@@ -1,0 +1,26 @@
+   The challenge on the client side for REST-style services
+
+   # Client needs to extract the informational content from the response document.
+   
+     ## If the document is JSON and the client is JavaScript, the extraction is straightforward
+        because a JSON document is just the text representation of a JavaScript object.
+
+     ## If the document is XML, two broad approaches:
+     
+        ### Parse the XML to extract the information. For reasonably sized documents a tree-based
+	    (DOM) parse is feasible; for large documents, a stream-based parse (SAX) may be needed.
+
+        ### Convert the XML document into a Java object using JAX-B or comparable "binding" technology.
+
+   # REST-style services typically provide an XML Schema or comparable grammar for response documents.
+
+     ## Java has excellent tools/libraries (standard and 3rd party) for using an XML Schema
+        to convert XML payloads into Java objects.
+
+        ### The trick is to use the XML Schema to establish a "binding" between an XML type
+	    (e.g., a product list in XML) and a Java type (e.g., an ArrayList<Product> instance):
+
+               XML product list document <-------------> Java ArrayList<Product>
+	                                     binding
+
+

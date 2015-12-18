@@ -1,0 +1,13 @@
+   Overview of Restlet with the full-CRUD 'adages' service: similar to but simpler than the 'predictions' service
+
+   # Like a JAX-WS service, a Restlet service uses an "interceptor" (org.restlet.ext.servlet.ServerServlet),
+     which receives incoming requests and dispatches these to the Restlet service.
+
+   # Annotations such as @Get and @Post are used, and there is high-level support for MIME types such as XML and JSON.
+     ## Restlet includes its own libraries for XML and JSON generation
+
+   # A Restlet service has an explicit routing table, which extends the Restlet Application class.
+
+
+
+

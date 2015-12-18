@@ -1,0 +1,27 @@
+ Code for the orchestrated cds service
+
+# cds.war: deployable WAR file with an HTML document, a simple JSP script, and a backend JavaBean:
+
+                                        GET              GET
+  ## jQuery client in the HTML document----->cds service------>W3Schools service
+                                       <-----           <------
+				        JSON		  XML
+
+  ## The cds service code: the JSP script and backend JavaBean
+  
+    <!-- the JSP script -->
+    <jsp:useBean id    = "fetcher" type  = "cds.FetchXML" class = "cds.FetchXML"></jsp:useBean> 
+    <jsp:getProperty name = "fetcher" property = "json"/> <!-- getJson() method in the JavaBean -->
+
+  ## FetchXML.java is the JavaBean class.
+
+
+
+
+
+
+
+
+
+
+

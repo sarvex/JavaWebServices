@@ -1,0 +1,30 @@
+...
+my $baseUrl = 'http://localhost:8080/predictions2/';
+my $ua = LWP::UserAgent->new;
+...
+sub getTest {                                                                        ### line 1
+    my ($url) = @_;
+    print "\nGET request against $url\n\n";
+    my $request = HTTP::Request->new(GET => $url);
+    my $response = $ua->request($request);
+    handleResponse($response, \&parseXml); # pointer to a function                   ### line 2
+}
+...
+sub parseXml {
+    ...
+    # Set up the XPath search.
+    my $xp = XML::XPath->new(xml => trim($rawXml));                                  ### line 3
+    
+    # Extract a list apiece of ids, whos, and whats.
+    my @ids = $xp->find('//object/void[@property="id"]/int')->get_nodelist;          ### line 4
+    my @whos = $xp->find('//object/void[@property="who"]/string')->get_nodelist;     ### line 5
+    my @whats = $xp->find('//object/void[@property="what"]/string')->get_nodelist;   ### line 6
+
+    # Iterate over the arrays to print the data.
+    my $it = each_array(@ids, @whos, @whats);
+    while (my ($id, $who, $what) = $it->()) {                                        ### line 7
+	print sprintf("%2d: ", $id->string_value) . 
+	    $who->string_value . " -> '" . 
+	    $what->string_value . "'\n";
+    }
+}

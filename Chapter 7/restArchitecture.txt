@@ -1,0 +1,32 @@
+   REST-style services and servlets: the two approaches seen so far
+   
+     1. The service is implemented directly as an HttpServlet (or equivalent, e.g., a JSP script).
+	## The servlet container (e.g., Tomcat's Catalina) is then the service container.
+           There is no software level between the service and the container.
+
+     2. The service is implemented as an application within a framework such as JAX-RS or Restlet.
+	## The framework's "interceptor" servlet then acts as the service container.
+
+    # Depictions of the difference:
+
+           +-------------------------------------------+
+     1.    | HttpServlet instances as RESTful services |           ## predictions, predictions2
+	   +-------------------------------------------+
+	     Servlet container (e.g., Tomcat Catalina)
+
+           +--------------------------------------------------+
+     2.    | JAX-RS application instances as RESTful services |    ## predictions3 
+	   +--------------------------------------------------+
+	   com.sun.jersey.spi.container.servlet.ServletContainer
+ 	         (the Jersey interceptor for JAX-RS)
+
+      Instances of the "interceptor" servlet reside in a servlet container such as Catalina:
+
+           +--------------------------------------+
+           | +----------------------------------+ |
+	   | | JAX-RS ServletContainer instance | |
+	   | +----------------------------------+ |
+	   +--------------------------------------+
+	      Tomcat Catalina servlet container
+
+

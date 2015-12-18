@@ -1,0 +1,24 @@
+  Java Frameworks for REST-style services
+
+  # REST-style services piggy-back on existing infrastructure such as HTTP(S) transport; web servers
+    such as Nginx, Apache2, and Tomcat; and document-interchange technologies such as XML and JSON.
+
+    ## REST-style services stay "close to the metal" by working directly what this infrastructure has to offer.
+
+  # The original 'predictions' REST-style service uses JSP and backend JavaBeans (POJOs).
+  
+    ## JSP and similar scripts are translated automatically into servlets: what executes are servlets and
+       any supporting code such as the aforementioned POJOs.
+
+  # The basic list of frameworks:
+
+    ## HttpServlet
+
+    ## JAX-RS (Java API for XML-REST-style Services)
+
+       ### Various implementations and extensions
+
+    ## Restlet
+
+       ### Predates JAX-RS, interoperable with JAX-RS, and similar in style
+

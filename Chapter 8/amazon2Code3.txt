@@ -1,0 +1,21 @@
+  Putting the JAX-B pieces together
+
+  # The binding
+                                     binding
+    ItemLookupResponse XML Schema<------------->ItemLookupResponse.class
+
+  # Marshaling and Unmarshaling
+
+              Java side                marshal          XML side
+    Instance of an ItemLookupResponse----------->corresponding XML document
+
+                                       unmarshal
+    Instance of an ItemLookupResponse<-----------corresponding XML document
+
+    ## Unmarshaling is what we want:
+
+       1. Get the ItemLookupResponse document from Amazon ECommerce.
+       
+       2. Unmarshal it to get a Java object, an instance of the ItemLookupResponse class from xjc.
+       
+       3. Extract the desired information (e.g., the author's name) using Java code.

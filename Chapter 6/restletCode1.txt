@@ -1,0 +1,31 @@
+# Restlet code: the routing table and the GET for JSON
+
+//*** imports
+public class AdagesApplication extends Application {            /** line 1 **/
+    @Override
+    public synchronized Restlet createInboundRoot() {           /** line 2 **/
+	// Create the routing table: map URIs to classes
+	Router router = new Router(getContext());               /** line 3 **/
+        router.attach("/",            PlainResource.class);     
+	router.attach("/xml",         XmlAllResource.class);
+	router.attach("/xml/{id}",    XmlOneResource.class);    /** line 4 **/
+	router.attach("/json",        JsonAllResource.class);   /** line 5 (see line 6 below) **/
+	router.attach("/create",      CreateResource.class);    
+        ...
+        return router;
+}
+
+public class JsonAllResource extends ServerResource {           /** line 6 **/
+    public JsonAllResource() { }
+    @Get                                                        /** line 7 **/
+    public Representation toJson() {
+	   List<Adage> list = Adages.getList();
+	   JsonRepresentation json = null;                      /** line 8 **/
+	   try {
+	      json = new JsonRepresentation(new StringRepresentation(list.toString()));
+	   } catch(Exception e) { }
+	   return json;
+    }
+}
+
+

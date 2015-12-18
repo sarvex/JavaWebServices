@@ -1,0 +1,35 @@
+ Securing web services
+
+        messages over a channel
+  Bob<--------------------------->Alice
+
+# Wire-level (transport-level) security 
+
+  ## peer authentication: Alice authenticates her identity to Bob, and Bob does the same to Alice.
+     
+  ## confidentiality: Bob encrypts messages sent to Alice, who then decrypts them; same the other way.
+
+  ## integrity: When Alice receives a message, she can confirm that it's the same message that Bob sent.
+
+# Users/roles security
+
+  ## Two phase process in which a user provides a credential that verifies the user's identity:
+  
+     ### The first phase is user authentication: for instance, Alice uses a password, retinal scan,
+	 digital certificate, or the like to confirm her identity as Alice.
+
+         #### Amazon's approach:
+	      1. Client creates a 160-bit hash value using the client's secret key
+              2. This hash value--and not the secret key itself--travels over the wire.
+	      3. Amazon, with its own copy of the secret key, generates another 160-bit
+		 value from the same data--and verifies by comparing the two.
+
+     ### The second (and optional) phase is role authorization: for instance, a database lookup
+	 confirms that Alice is authorized to read/write/delete a particular resource, but the
+         comparable lookup confirms that Bob is authorized only for read operations on the resource.
+
+
+
+
+
+     

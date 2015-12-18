@@ -1,0 +1,30 @@
+# The 2nd REST-style client against Amazon's ECommerce service
+
+  ## java -jar Amazon2.jar <accessID> <secretKey>
+
+  ## Everything's the same as in Amazon1.jar except for the information extraction
+
+     ### No explicit parse of the returned XML document
+     
+     ### Instead, JAX-B technology is in play.
+
+  ## Binding (the "B" in JAX-B): How it all works
+
+     ### Amazon publishes an XML Schema for the ECommerce service (1,300 lines of XML!)
+         http://webservices.amazon.com/AWSECommerceService/AWSECommerceService.xsd
+
+     ### This schema fully describes the layout ("grammar") of an ECommerce response document.
+         In short, the schema "data types" the returned documents.
+
+     ### Core Java comes with an xjc (XML to Java conversion) utility that, given a schema,
+         generates the corresponding Java classes:
+
+              XML Schema----->xjc----->corresponding Java classes (= Java data types)
+
+         #### In this case, about 85 classes are generated. (xjc generates source files,
+	      which then need to be compiled.)
+
+  
+	  
+	    
+   

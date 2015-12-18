@@ -1,0 +1,26 @@
+   Review of the servlet-based 'predictions2' service
+
+   # The code consists of two backend JavaBeans and an HttpServlet subclass.
+     
+     ## Prediction.java represents a single prediction with who, what, and ID properties.
+     ## Predictions.java is a utility class, which supports basic service logic behind the scenes.
+     ## PredictionsServlet is the "HTTP endpoint," which receives client requests:
+
+        ### Supports the four CRUD operations, including two versions of GET: GET all and GET specified one
+        ### Returns a "Method Not Allowed" error for any but POST, GET, PUT, and DELETE requests
+        ### For GET requests, returns XML responses by default but JSON ones on request.
+
+   # To ensure proper thread coordination under the "one thread per request" model that Tomcat/Jetty
+     follow, the predictions are stored in a java.util.concurrent.ConcurrentHashMap:
+
+     ## The synchronization is baked into the access methods for this map.
+     ## The map is implemented for efficieny so that, for instance, two requests threads could update
+        two different predictions at the same time, but not the same prediction at the same time.
+     ## A thread-safe AtomicInteger is used to get unique integer IDs as prediction IDs.
+
+   # The deployable WAR file (predictions2.war) is included in the working files. This WAR
+     contains all of the source code as well.
+
+     ## The Ant script can be used to redeploy: ant -Dwar.name=predictions2 deploy
+
+

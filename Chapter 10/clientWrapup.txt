@@ -1,0 +1,49 @@
+ Wrap-up of REST-style clients with a JAX-RS example
+
+ # JAX-RS and Restlet have client-side APIs that can be used against any REST-style service
+   ## Just as, e.g., a Java URLConnection can be used against a JAX-RS or Restlet service
+
+ # JerseyClient.java (JAX-RS client) against the HttpServlet-based 'predictions2' service
+   (A ZIP with a Readme is included in the working files: jaxrsClient.zip.)
+
+import com.sun.jersey.api.client.Client;                                        //** line 0
+import com.sun.jersey.api.client.WebResource;
+import javax.ws.rs.core.MediaType;
+import com.sun.jersey.api.representation.Form;
+
+public class JerseyClient {
+    private static final String baseUrl = "http://localhost:8080/predictions2"; //** line 1
+    ...
+    private void demo() {
+	Client client = Client.create();                                        //** line 2
+	client.setFollowRedirects(true); // in case the service redirects
+	WebResource resource = client.resource(baseUrl);                        //** line 3
+	getAllDemo(resource);
+	postDemo(resource); // same resource but different verb
+        ...
+    }
+
+    // GET all in XML and in JSON (with JAX-B, could make the type Prediction or Predictions)
+    private void getAllDemo(WebResource resource) {
+	String response = 
+	    resource.accept(MediaType.APPLICATION_XML_TYPE).get(String.class);  //** line 4
+	report("GET all in XML:\n", response);
+	response =
+	    resource.accept(MediaType.APPLICATION_JSON_TYPE).get(String.class); //** line 5
+	report("GET all in JSON:\n", response);
+    }
+    ...
+    private void postDemo(WebResource resource) {
+	Form form = new Form(); // HTTP body, a simple hash                     //** line 6
+	form.add("who", "William Butler Yeats");                                //** line 7
+	form.add("what", "I know that I shall meet my fate");                   //** line 8
+	
+	String response = 
+	    resource.type(MediaType.APPLICATION_FORM_URLENCODED_TYPE)           //** line 9
+	    .accept(MediaType.TEXT_PLAIN_TYPE)
+	    .post(String.class, form);
+	report("POST:\n", response);
+    }
+    ...
+}
+

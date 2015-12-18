@@ -1,0 +1,9 @@
+ Options for publishing REST-style services in Java
+
+ # For production and serious testing, a production-grade web server such as Tomcat or Jetty.
+ 
+   ## Ant or Maven scripts can automate the process, the earlier Ant example illustrates.
+
+   ## IDEs such as Eclipse, NetBeans, and IntelliJ likewise automate deployment.
+
+ # Lighter-weight options for development are available.

@@ -1,0 +1,34 @@
+ A Java client against the Amazon SOAP-based ECommerce service
+
+ # Generating the wsimport artifacts:
+
+     wsimport -p amazon -keep http://webservices.amazon.com/AWSECommerceService/AWSECommerceService.wsdl
+
+   ## The WSDL is more than 1,500 lines in size (excluding the XML Schema)!.
+   ## Almost 90 .java files are generated, e.g.:
+
+         CartCreate.java
+	 ItemSearchRequest.java   ### used in this example
+	 ItemSearch.java          ### used in this example
+	 Items.java               ### used in this example
+	 SimilarityLookup.java
+   
+ # Invoking the client: java -jar AmazonClientSOAP.jar <accessID> <secretKey>
+ 
+   ## Output from a sample run:
+   
+      1: Persuasion
+      2: Pride and Prejudice
+      3: Northanger Abbey
+      4: Emma
+      5: Sense and Sensibility (Collins Classics)
+      6: Persuasion (Dover Thrift Editions)
+      7: Emma (Oxford World's Classics)
+      8: Jane Austen: The Complete Collection (With Active Table of Contents)
+      9: Jane Austen Collection: 18 Works, Pride and Prejudice, Emma, Love and Friendship,
+         Northanger Abbey, Persuasion, Lady Susan, Mansfield Park & more!
+     10: Mansfield Park
+
+ # The JAX-B serialization occurs again in the SOAP libraries, not in the application code.
+
+ 

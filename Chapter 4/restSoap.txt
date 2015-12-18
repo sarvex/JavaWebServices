@@ -1,0 +1,30 @@
+ Web service flavors: REST and SOAP
+   
+   # REST: REpresentationl State Transfer (Roy Fielding's dissertation, 2000)
+      
+   # SOAP: once Simple Object Access Protocol, but no longer an acronym
+     ## In effect, the next generation of XML-RPC (late 1990s)
+
+   # REST is really a style, even a state of mind
+     ## The JSP-based 'predictions' service would be considered REST-style or RESTful
+     
+   # SOAP is at once a messaging protocol and an XML dialect (W3C). 
+
+   # Differences in the client/service conversation:
+
+                    HTTP GET, POST, PUT, or DELETE
+     REST: client ----------------------------------> service
+
+           client <---------------------------------- service
+                    XML, JSON, plaintext,... document
+
+
+                  HTTP POST of SOAP request document
+     SOAP: client ----------------------------------> service
+
+           client <---------------------------------- service
+	               SOAP (maybe JSON) document
+
+   # Rails framework has influenced the RESTful style.
+     ## Amazon supports both REST-style and SOAP-based services.
+   

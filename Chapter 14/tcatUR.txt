@@ -1,0 +1,34 @@
+ Container-managed users/roles security (with Tomcat as the example)
+
+ # For wire-level security, going from HTTP to HTTPS requires no change in the web service code,
+   only (relatively minor) changes to service-side configuration and to the client.
+   ## Same approach for users-roles security.
+
+ # A security 'realm' is a data store for identities (usernames) and credentials (passwords).
+   ## Six 'realms' are available as plug-ins (including a LockOut realm), others can be added.
+   ## LDAP-based security providers and the like are supported.
+   ## The default 'memory realm' is so named because the auth/auth info is read into memory from an XML file.
+
+ # TOMCAT_HOME/conf/tomcat-users.xml is the XML file:
+
+     <tomcat-users>
+     <!--
+       NOTE:  The sample user and role entries below are wrapped in a comment
+       and thus are ignored when reading this file. Do not forget to remove
+       <!.. ..> that surrounds them. -->
+     <!--
+       <role rolename="tomcat"/>
+       <role rolename="role1"/>
+       <user username="tomcat" password="tomcat" roles="tomcat"/>
+       <user username="both" password="tomcat" roles="tomcat,role1"/>
+       <user username="role1" password="tomcat" roles="role1"/> -->
+     /tomcat-users>
+
+   ## After editing:
+
+      <tomcat-users>
+         <role rolename="bigshot"/>
+	 <user username="moe" password="MoeMoeMoe" roles="bigshot"/>
+      </tomcat-users>
+
+ 

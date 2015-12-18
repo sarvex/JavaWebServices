@@ -1,0 +1,33 @@
+ SOAP-based services: review and challenges
+
+# Summary of the 1st SOAP-based service:
+
+  ## Service is implemented as a POJO class annotated as a @WebService.
+  
+  ## Service operations are public methods, preferably annotated as @WebMethods.
+  
+     ### Under best practices, the operations should be "pure fuctions," that is,
+         mutually independent methods that map arguments to the appropriate return values.
+
+     ### The @WebMethods should not share fields (e.g., operations should be not be properties
+	 based on shared fields).
+
+     ### "Pure functions" are thread-safe.
+
+   ## Core Java 6 or greater comes with the required libraries.
+      For core Java 5: https://jax-ws.java.net/
+
+# Serialization to and from SOAP XML is automatic: the underlying libraries do the JAX-B work.
+
+  ## The "serializable types" are: primitives (int, float, char, etc.), String, Calendar (Date),
+     Object as the catch-all, arrays (and collections) of the aforementioned types, and any other
+     type for which a programmer is willing to write some serialization code (e.g., for a Map).
+
+  ## Any programmer-defined type (class) reducible to the above is SOAP-serializable.
+
+  ## The progammers gets to work in language-familiar types, not in XML.
+
+  
+
+
+

@@ -1,0 +1,27 @@
+   RESTful routing in JAX-RS
+
+   # Here's a sample from the predictions3 code:
+
+     @GET
+     @Produces(MediaType.APPLICATION_JSON)
+     @Path("/json")     // ...predictions3/resourcesP/json
+     public Response getJson() {
+        ...
+
+   # A related sample, with automated data validation:
+
+     @GET
+     @Produces(MediaType.APPLICATION_JSON)
+     @Path("/json/{id: \\d+}")  // ...predictions3/resourcesP/json/12 is ok
+                                // ...predictions3/resourcesP/json/foo is a 404 error
+     public Response getJson(@PathParam("id") int id) {
+        ...
+
+     ## {id: \\d+}: id is placeholder for a path entry, which must
+        satisfy the regex expression \d+, which means: one or more decimal digits ([0-9]+).
+        ### JAX-RS can take over the data validation.
+
+   # The @Produces annotation is more a promise than a guarantee. In this example,
+     JSON is promised, but the application must deliver.
+
+     ## Generation of a JSON response, like an XML response, could be automated.

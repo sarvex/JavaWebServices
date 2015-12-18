@@ -1,0 +1,30 @@
+ The JAX-B code in the Amazon2 client
+
+    private String getAuthor(String xml) {
+        String author = null;
+        try {
+            final String fileName = "amazon.xsd"; // downloaded XML Schema                     /** line 1 **/
+            ...
+            Schema schema = factory.newSchema(new StreamSource(fileName));                     /** line 2 **/
+            
+            // Create a JAX-B context for unmarshaling
+            JAXBContext ctx = JAXBContext.newInstance(ItemLookupResponse.class);               /** line 3 **/
+            Unmarshaller um = ctx.createUnmarshaller();                                        /** line 4 **/
+            um.setSchema(schema);
+            
+            // Generate a Java ItemSearchResponse instance.
+            ItemLookupResponse ilr = 
+                (ItemLookupResponse) um.unmarshal(new ByteArrayInputStream(xml.getBytes()));   /** line 5 **/
+
+            // Use the standard POJO idiom to extract the author.
+            List<Items> itemsList = ilr.getItems(); // list of lists                           /** line 6 **/
+            for (Items items : itemsList) {         // outer list                              /** line 7 **/
+                List<Item> list = items.getItem();  // inner list                              /** line 8 **/
+		
+                for (Item item : list) {            // items in inner list                     /** line 9 **/
+                    ItemAttributes attributes = item.getItemAttributes();                      /** line 10 **/
+                    List<String> authors = attributes.getAuthor(); // could be several         /** line 11 **/
+                    author = authors.get(0); // in this case, only one                         /** line 12 **/
+                }
+            }
+        }

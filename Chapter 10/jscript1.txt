@@ -1,0 +1,11 @@
+  JavaScript clients, JSON documents, and "orchestrating" web services
+
+# Web services are meant to be modular, which encourages "orchestration"--combining services to play together
+
+# JavaScript clients prefer JSON (JavaScript Object Notation) for the obvious reason:
+  a JSON document is the text representation of a JavaScript object
+  
+                       unmarshal
+         JSON document----------->JavaScript object (e.g., an array of CDs)
+
+

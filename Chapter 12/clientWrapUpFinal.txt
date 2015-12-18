@@ -1,0 +1,21 @@
+ Wrap-up on the client side in web services
+
+ # REST-style services are deliberately close to the HTTP metal, which brings challenges:
+
+   ## What to do with the response documents on the client side?
+      ### Parse to the extract the information? Java has excellent parsing tools for XML and JSON.
+
+      ### Use JAX-B to unmarsal (deserialize) documents into Java objects?
+          #### Frameworks such as JAX-RS are moving to automate some of this.
+
+   ## In either case, the XML or JSON does come to the surface.
+
+ # SOAP-based services are further from the HTTP metal, and in this sense higher level:
+
+   ## The wsimport utility can take a WSDL as input and generate client-support Java artifacts
+      (interfaces and classes) as output.
+
+   ## At the application level, the SOAP is transparent.
+
+   ## If tinkering with the SOAP messages is essential, the handler API is available.
+

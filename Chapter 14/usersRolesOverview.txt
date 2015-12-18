@@ -1,0 +1,32 @@
+ Users/roles security overview
+
+   User authentication:
+   
+             identity       +------------------+ http://host.com/myWebService
+   client------------------>| secured resource | http://host.com/myWebService/special
+            credential      +------------------+ ...
+	    
+   Role authorization: Which CRUD operations for this authenticated user?
+
+   ## Amazon web services example: my accessID (identity) and a hash value generated from my secretKey (credential).
+      Amazon authorizes access rights depending on this verified identity (e.g., I can place an order for an item,
+      but not set its price).
+       
+  # Logging into a device illustrates: you provide a username (identity) and a password (supporting credential).
+    The login system then determines what rights and privileges come with that identity.
+
+ # Summary of the jargon:
+
+   1. User authentication (ID + supporting credential)
+   2. Role authorization (access rights)
+      ### Typically automated with database lookups and the like.
+
+ # Implementating users/roles security on the service side:
+   ## Application-managed: not recommended, too ad hoc, does not scale.
+   ## Container-managed: let Tomcat or the equivalent handle the authentication/authorization.
+      ### Tomcat provides various options, including turning over auth/auth to an LDAP or similar service.
+  
+ # The challenge on the client side:
+   ## Present the identity and credential in exactly the way the container expects.
+   ## HTTP BASIC (basic access authentication) supports storing an identity and its credential in an HTTP header element.
+ 

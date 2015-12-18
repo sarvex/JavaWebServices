@@ -1,0 +1,18 @@
+   The 'predictions2' REST-style service
+
+   # HttpServlet implementation with two backend POJO classes
+
+   # Supports the full CRUD operations
+
+   # Response documents can be either XML or JSON
+
+   # The working files include predictions2.war, which is ready to deploy,
+     together with the Ant script in case you'd like to tinker with the 
+     code and then redeploy.
+
+   # A suite of curl commands (curlsTest.pl) to test for CRUD compliance
+     ## Perl for Windows: http://www.activestate.com
+
+
+
+

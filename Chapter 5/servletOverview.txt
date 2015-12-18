@@ -1,0 +1,21 @@
+
+    Overview of the 'predictions2' code
+
+    # Prediction.java: each instance represents one prediction
+      ## Properties: who, what, and id
+
+    # Predictions.java: utilities and data structures, including the
+      thread-safe ConcurrentMap and AtomicInteger from the java.util.concurrent
+      package and subpackages.
+      
+      ## Java-based, production-grade web servers such as Tomcat and Jetty implement
+         the 'one thread per request' model, which requires thread synchronization
+
+      ## The map contains all of the predictions; hence, access to the map must be
+         synchronized for the request-handling threads.
+
+    # PredictionsServlet.java: the request endpoint
+    
+      ## Handles CRUD requests: doPost (Create), doGet (Read), doPut (Update), doDelete (Delete)
+      
+      ## Generates XML and, optionally, JSON responses

@@ -1,0 +1,14 @@
+ Quick review of client-side issues:
+
+ # For client-script clients, JSON is ideal--no explicit parsing of the response document.
+ 
+   ## For Java and other clients, JSON is just like XML--explicit parsing or JAX-B unmarshaling are needed.
+
+ # Connecting to the service and sending requests are relatively straightforward.
+ 
+   ## The big question remains about how best to extract the information in the response document:
+
+      Do an explicit parse?
+      Use JAX-B to unmarshal the response document into a Java object?
+
+

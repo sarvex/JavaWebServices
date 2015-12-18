@@ -1,0 +1,33 @@
+   A programming exercise: a REST-style service with full CRUD support
+
+   # The emphasis should be on RESTful features, not on data:
+     ## Implement the four CRUD operations.
+
+     ## Restful routing implemented in an easy-to-follow way, with equal
+	weight on URIs ("nouns") and request methods ("verbs").
+
+     ## Use of appropriate status codes (e.g., 200 OK, 404 Not Found) and
+	MIME response types, in particular XML and JSON.
+
+     ## The data can be hard-wired into the program. In the 'predictions'
+	services, for example, the data are packaged in the WAR file itself
+	as a text file (predictions.db), which the service then converts
+	into a collection of predictions.
+        ### The 'adages' service has an even simpler approach to data: the
+            adages are initialized in a String array, which is then transformed
+            into a thread-safe CopyOnWriteArrayList<Adage>.
+
+        ### For thread saftey, the data (adages, predictions, whatever) should be
+	    stored in a thread-safe structure such as ConcurrentHashMap or
+	    CopyOnWriteArrayList.
+
+     ## Request data should be validated. On a POST request, for example, the
+	incoming data should be checked to ensure that a new Prediction, Adage, or
+	the like can be constructed from the data.
+
+   # Pick a framework and go for it! HttpServlet, JAX-RS, or Restlet. If time
+     permits, try HttpServlet and one of the others.
+     ## In the spirit of RESTful simplicity, stick with POJO-classes whenever possible.
+     
+   
+ 
